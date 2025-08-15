@@ -21,120 +21,13 @@ This repository implements the method presented in the paper **"Identifiable Dis
 Follows directly from Theorem 1 in [19].
 
 ## Proof of Theorem 3.3
-Recall that $\mathbf{x}_i$ serves as a proxy variables for the latent factors. Under Assumptions 1–4, we have:
-
-$$
-\begin{aligned}
-&\mathbb{E}\bigl[y_i(t_i^{\prime},g_i^{\prime})| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}\bigr]
-\\=&\int
-\mathbb{E}\bigl[y_i(t_i^{\prime},g_i^{\prime})| \mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}\bigr]
-p\bigl(\mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}\bigr)
-d\mathbf{z}_{i}d\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}
-\\=&\int
-\mathbb{E}\bigl[y_i(t_i^{\prime},g_i^{\prime})| t_i^{\prime},g_i^{\prime},\mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}\bigr]
-p\bigl(\mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}\bigr)
-d\mathbf{z}_{i}d\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}
-\\=&\int
-\mathbb{E}\bigl[y_i| t_i^{\prime},g_i^{\prime},\mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}\bigr]
-p\bigl(\mathbf{z}_{i},\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}bigr)
-d\mathbf{z}_{i}d\{\mathbf{z}_{j}\}_{j\in\mathcal{N}_i}
-\\=&\int
-\mathbb{E}\bigl[y_i| t_i^{\prime},g_i^{\prime},\mathbf{z}_{c,i},\{\mathbf{z}_{c,j}\}_{j\in\mathcal{N}_i},\mathbf{z}_{y,i},\{\mathbf{z}_{y,j}\}_{j\in\mathcal{N}_i}\bigr]
-p\bigl(\mathbf{z}_{c,i},\{\mathbf{z}_{c,j}\}_{j\in\mathcal{N}_i}, \\&\mathbf{z}_{y,i},\{\mathbf{z}_{y,j}\}_{j\in\mathcal{N}_i}| \mathbf{x}_i,\{\mathbf{x}_j\}\bigr)
-d\mathbf{z}_{c,i}d\{\mathbf{z}_{c,j}\}_{j\in\mathcal{N}_i}d\mathbf{z}_{y,i}d\{\mathbf{z}_{y,j}\}_{j\in\mathcal{N}_i}.
-\end{aligned}
-$$
-
-By Theorem 3.2, the joint posterior distribution
-
-$$
-p\bigl(\mathbf{z}_{c,i},\{\mathbf{z}_{c,j}\}_{j\in\mathcal{N}_i}, \mathbf{z}_{y,i},\{\mathbf{z}_{y,j}\}_{j\in\mathcal{N}_i}| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}\bigr)
-$$
-
-is identifiable. Thus, the entire integral is identifiable. An analogous derivation applies to 
-
-$$
-\mathbb{E}[y_i(t_i^{\prime\prime},g_i^{\prime\prime})| \mathbf{x}_i,\{\mathbf{x}_j\}_{j\in\mathcal{N}_i}],
-$$
-
-and hence, the individual treatment effect $\tau_i$ is identifiable.
+![Proof](Theorem_3.png)
 
 ## Proof of Theorem 3.7
-We first expand the definition of the average counterfactual loss:
-
-$$
-\begin{aligned}
-\epsilon_{CF} 
-&= \mathbb{E}_{p(t,g)}  \mathbb{E}_{p(t',g')} 
-\int_{\tilde{\mathcal{Z}}_{cy}} 
-\ell_{h,\phi_{cy}}(\tilde{\mathbf{z}}_{cy}, t, g) 
-p(\tilde{\mathbf{z}}_{cy} | t',g')  d\tilde{\mathbf{z}}_{cy} \\
-&= \int_{\mathcal{T} \times \mathcal{G}} \int_{\tilde{\mathcal{Z}}_{cy}}
-\ell_{h,\phi_{cy}}(\tilde{\mathbf{z}}_{cy}, t, g) 
-p(\tilde{\mathbf{z}}_{cy}) 
-p(t,g)  d\tilde{\mathbf{z}}_{cy}  dt  dg
-\end{aligned}
-$$
-
-Similarly, the weighted average factual loss:
-
-$$
-\epsilon_F^{(w)}
-= \int_{\mathcal{T} \times \mathcal{G}} \int_{\tilde{\mathcal{Z}}_{cy}}
-\ell_{h,\phi_{cy}}(\tilde{\mathbf{z}}_{cy}, t, g) 
-w(\tilde{\mathbf{z}}_{cy}, t, g) 
-p(\tilde{\mathbf{z}}_{cy}, t, g)  d\tilde{\mathbf{z}}_{cy}  dt  dg
-$$
-
-Their difference:
-$$
-\begin{aligned}
-\epsilon_{CF} - \epsilon_F^{(w)}
-&= \int_{\mathcal{T} \times \mathcal{G}} \int_{\tilde{\mathcal{Z}}_{cy}}
-\ell_{h,\phi_{cy}}(\tilde{\mathbf{z}}_{cy}, t, g)
-[ p(\tilde{\mathbf{z}}_{cy})p(t,g) 
-- w(\tilde{\mathbf{z}}_{cy}, t, g) p(\tilde{\mathbf{z}}_{cy}, t, g) ]
- d\tilde{\mathbf{z}}_{cy}  dt  dg\nonumber\\
-% By the assumption \(\frac{1}{B_{\phi_{cy}}} \ell_{h,\phi_{cy}}(\psi_{cy}(\mathbf{r}_{cy}), t, g) \in \mathcal{G}\), we have:
-% \begin{align}
-% \epsilon_{CF} - \epsilon_F^{(w)}
-&\le B_{\phi_{cy}}  \sup_{g \in \mathcal{G}}
-\int_{\mathcal{T} \times \mathcal{G}} \int_{\tilde{\mathcal{Z}}_{cy}}
-g(\tilde{\mathbf{z}}_{cy}, t, g) 
-[ p(\tilde{\mathbf{z}}_{cy})p(t,g) 
--w(\tilde{\mathbf{z}}_{cy}, t, g) p(\tilde{\mathbf{z}}_{cy}, t, g) ]
- d\tilde{\mathbf{z}}_{cy}  dt  dg.\nonumber
- \end{aligned}
-$$
-
-Now, perform the change of variables $ \mathbf{r}_{cy} = \phi_{cy}(\tilde{\mathbf{z}}_{cy}) $ with inverse $ \psi_{cy} $, and let $ \widetilde{\mathcal{G}} = \left\{ \tilde{g} : \tilde{g}(\tilde{\mathbf{z}}) = g(\phi_{cy}(\tilde{\mathbf{z}})) \big| \det J_{\psi_{cy}}(\phi_{cy}(\tilde{\mathbf{z}})) \big|, \ g \in \mathcal{G} \right\} $. Then, the integrals over $ \tilde{\mathbf{z}}_{cy} $ can be rewritten over $ \mathbf{r}_{cy} $, yielding $ \epsilon_{CF} - \epsilon_F^{(w)} \le B_{\phi_{cy}} \ \mathrm{IPM}_{\widetilde{\mathcal{G}}} \Big( p_{\phi_{cy}}(\mathbf{r}_{cy}) \, p(t,g), \ w(\psi_{cy}(\mathbf{r}_{cy}), t, g) \, p(\mathbf{r}_{cy}, t, g) \Big) $.
+![Proof](Theorem_7.png)
 
 ## Proof of Theorem 3.8
-$$
-\begin{aligned}
-\epsilon_{\mathrm{PEHE}}(f,\phi_{cy})
-\overset{(\mathrm{i})}{=}&
-\mathbb{E}_{p(t,g)p(t',g')p(\tilde{\mathbf z}_{cy})}
-\Big[
-\big(\hat{\tau}_{(t,g),(t',g')}(\tilde{\mathbf z}_{cy}) - \tau_{(t,g),(t',g')}(\tilde{\mathbf z}_{cy})\big)^2
-\Big] \nonumber\\
-\overset{(\mathrm{ii})}{\le}&
-4  \mathbb{E}_{p(t,g)p(\tilde{\mathbf z}_{cy})}
-\Big[
-\big(f(\phi_{cy}(\tilde{\mathbf z}_{cy}),t,g)-m(t,g;\tilde{\mathbf z}_{cy})\big)^2
-\Big] \nonumber\\
-\overset{(\mathrm{iii})}{=}&
-4\big(\epsilon_{CF} - \sigma_{Y}\big) \nonumber\\
-\overset{(\mathrm{iv})}{\le}&
-4\epsilon_F^{(w)}
-+ 4B_{\phi_{cy}}\mathrm{IPM}_{\widetilde{\mathcal{G}}}\!\big(
-p_{\phi_{cy}}(\mathbf r_{cy})p(t,g),
-w(\psi_{cy}(\mathbf r_{cy}),t,g)p(\mathbf r_{cy},t,g)
-\big) - 4\sigma_{Y}. \label{eq:pehe_chain}
-\end{aligned}
-$$
-Here, (i) is the definition of PEHE as the expectation of the squared estimation error between $\hat{\tau}$ and $\tau$; (ii) follows by substituting $\hat{\tau}-\tau = [f(\phi_{cy}(\tilde{\mathbf z}_{cy}),t,g)-m(t,g;\tilde{\mathbf z}_{cy})] - [f(\phi_{cy}(\tilde{\mathbf z}_{cy}),t',g')-m(t',g';\tilde{\mathbf z}_{cy})]$, applying the pointwise inequality $(a-b)^2 \le 2a^2 + 2b^2$ and using the symmetry of $p(t,g)p(t',g')$ to obtain the factor 4; (iii) is the bias–variance decomposition under squared loss: $\ell_{h,\phi_{cy}}(\tilde{\mathbf z}_{cy},t,g) = (f-m)^2 + \mathrm{Var}(y(t,g)|\tilde{\mathbf z}_{cy})$, integration w.r.t. $p(t,g)p(\tilde{\mathbf z}_{cy})$ yields $\mathbb{E}[(f-m)^2] = \epsilon_{CF}-\sigma_Y$; (iv) applies the bound on $\epsilon_{CF}$ proved in Theorem 3.7 and multiplies by 4.
-
+![Proof](Theorem_8.png)
 
 # Experimental Results
 
