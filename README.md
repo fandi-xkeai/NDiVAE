@@ -33,7 +33,7 @@ Follows directly from Theorem 1 in [19].
 ![Proof](Theorem_3_8.png)
 
 ## Complexity analysis                         
-![Proof](Complexity analysis.png)
+![Proof](Complexity_analysis.png)
 
 # Experimental Results
 
