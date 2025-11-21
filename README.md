@@ -10,6 +10,9 @@ This repository implements the method presented in the paper **"Identifiable Dis
   - BC(hete) dataset
   - Flickr(hete) dataset
 
+- **Complexity Analysis**
+  Summarizes the computational complexity of all core components. The full derivation and the final combined complexity expression are provided for reference.
+
 - **Code**  
   The repository provides the full implementation in the `src` folder. The main script can be run as follows:
   ```bash
@@ -30,7 +33,7 @@ Follows directly from Theorem 1 in [19].
 ![Proof](Theorem_3_8.png)
 
 ## Complexity analysis                         
-![](Complexity analysis.png)
+![Proof](Complexity analysis.png)
 
 # Experimental Results
 
