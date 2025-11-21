@@ -511,8 +511,6 @@ class NDiVAE_Model(nn.Module):
                 "Total":          total_loss.item()
             }
 
-            record["Disc_loss"] = loss_d.item()
-
             losses.append(record)
 
             
@@ -526,7 +524,6 @@ class NDiVAE_Model(nn.Module):
                     f"Wass_zy={info['Wass_zy']:.6f}, "
                     f"Reg_zy={info['Reg_zy']:.6f}, "
                     f"Reg_zt={info['Reg_zt']:.6f}, "
-                    f"Disc={info['Disc_loss'] if info['Disc_loss'] is not None else 'N/A'}, "
                     f"Total={info['Total']:.6f}"
                 )
 

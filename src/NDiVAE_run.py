@@ -280,9 +280,6 @@ if __name__ == "__main__":
     args = get_args()
     set_seed(args.seed)
 
-    res_dir = "./NDiVAE"
-    os.makedirs(res_dir, exist_ok=True)
-
     all_results = []  
 
     expID_list = [0,1,2,3,4]
