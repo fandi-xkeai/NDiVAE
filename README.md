@@ -30,23 +30,7 @@ Follows directly from Theorem 1 in [19].
 ![Proof](Theorem_3_8.png)
 
 ## Complexity analysis                         
-We analyze the computational complexity of the proposed model. Let $N$ denote the number of samples (full batch), $E$ the number of edges, $L$ the number of MLP layers, $T$ the number of Sinkhorn iterations used for computing the Wasserstein distance, and $n_1$, $n_0$ the numbers of treated and control samples, respectively. The dimensionalities of the latent variables are denoted by $D_t$, $D_c$, and $D_y$, while $D_x$ and $D_u$ represent the dimensions of the observed features and the auxiliary observed variable. $D_{\text{hidden}}$ denotes the dimensionality of hidden layers in all neural network components. The Causal Representation Module, which involves prior, likelihood, and variational posterior computations parameterized by MLPs, has complexity 
-$
-\mathcal{O}( 5(L - 2) D_{\text{hidden}}^2 + D_{\text{hidden}} \big( 3 D_u L + 3(D_t + D_c + D_y) + 2 D_x + D_u \big)).
-$
-The Outcome Prediction Module, employing graph convolutional networks (GCNs) for network aggregation and MLPs for potential outcome and treatment prediction, has complexity 
-$
-\mathcal{O}( N(6L - 6)\, D_{\text{hidden}}^2 + N\, D_{\text{hidden}} (5D_c + 4D_y + 3D_t + 3 + D_{r_c} + D_{r_y} + D_{r_t}\bigr) + N(D_c^2 + D_y^2 + D_t^2) + E(D_c + D_y + D_t) ),
-$ where we assume that the dimensions of the aggregated representations and network-integrated representations match the corresponding latent variables.
-The Causal Regularization Module, consisting of a Sinkhorn-based independence constraint and two auxiliary MLP-based prediction tasks, has complexity 
-$
-\mathcal{O}( n_0 n_1 (T + D_y) ) + \mathcal{O}( D_{\text{hidden}} (2D_y + 2D_t + 1) + (L - 2) D_{\text{hidden}}^2 ).
-$
-
-By combining all components, the overall complexity of the model can be summarized as 
-$
-\mathcal{O}(N L D_{\text{hidden}}^2 \;+\; N D_{\text{hidden}} \cdot (D_x+D_u)\;+\; n_0 n_1 \cdot T \;+\; E \bigr).
-$ Therefore, the model scales linearly with the number of nodes and edges, remaining computationally tractable for large-scale networked data.
+![](Complexity analysis.png)
 
 # Experimental Results
 
