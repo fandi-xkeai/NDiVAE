@@ -36,6 +36,9 @@ Follows directly from Theorem 1 in [19].
 ## Complexity analysis                         
 ![Proof](Complexity_analysis.png)
 
+## Remark
+![Proof](Remark.png)
+
 # Experimental Results
 
 We provide additional experimental results adn we report the results on the BC (hete) and Flickr (hete) datasets.
