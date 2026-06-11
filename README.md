@@ -1,5 +1,7 @@
 This repository implements the method presented in the paper **"Identifiable Disentangled Representation Learning for Causal Inference under Networked Interference"**.
 
+We have also corrected several minor typographical errors identified after publication. Please refer to `NDiVAE.pdf` for the updated version of the paper.
+
 ## Contents
 
 - **Theoretical Analysis**  
@@ -41,7 +43,7 @@ Follows directly from Theorem 1 in [19].
 
 # Experimental Results
 
-We provide additional experimental results adn we report the results on the BC (hete) and Flickr (hete) datasets.
+We provide additional experimental results and we report the results on the BC (hete) and Flickr (hete) datasets.
 
 ## Experimental results of causal effect estimation on the BC(hete) dataset.
 The best result is highlighted in **bold**.
